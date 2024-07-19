@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useRef } from 'react';
+//Controlled and uncontrolled components
 
 export function MoviesListKeys2() {
   // collection of objects representing movies
@@ -23,24 +25,27 @@ export function MoviesListKeys2() {
     },
   ];
 
+  const [currentMovies, setCurrentMovies] = useState(movies);
+
   const handleAddMovie = (newMovie) => {
-    newMovie.id = movies.length + 1; // unreliable but succinct
-    setCurrentMovies([...movies, newMovie])
+    newMovie.id = movies.length + 1; // unreliable but works for now. Unreliable as many adds & deletes might result in repeated ids.
+    setCurrentMovies([...currentMovies, newMovie]);
   }
 
 
-  //although we aren't using the key, it needs to be there because Movie is using a list
-  const movieItems = movies.map(movie => (
+  //although we aren't using the key, it needs to be there because Movie is using a list and needs to track each item
+  const movieItems = currentMovies.map(movie => (
     <Movie key={movie.id} title={movie.title} year={movie.year} synopsis={movie.synopsis} />
   ));
 
   return (
     <div className="MoviesList componentBox">
       <ul> {movieItems} </ul>
-      <AddMovieForm onAddMovie={handleAddMovie} />
+      <AddMovieFormUncontrolledComponents onAddMovie={handleAddMovie} />
     </div>
   );
-}
+}// <AddMovieForm onAddMovie={handleAddMovie} />
+
 
 //create a separate function for displaying each movie
 function Movie({ title, year, synopsis }) {
@@ -59,6 +64,7 @@ function AddMovieForm({ onAddMovie }) {
     e.preventDefault();
     onAddMovie({ title, year })
   }
+
   return (
     <div className="AddMovieForm componentBox">
       <form onSubmit={handleSubmit}>
@@ -69,6 +75,40 @@ function AddMovieForm({ onAddMovie }) {
         <label>Year Released:
           <input name="year" type="number" value={year}
             onChange={(e) => setYear(e.target.value)} />
+        </label>
+        <button>Add Movie</button>
+      </form>
+    </div>
+  )
+}
+
+//example to test the same function as above using uncontrolled components instead
+/*Uncontrolled comopnents data is managed by the DOM itself - useRef allows access to manipulate DOM elements
+
+useState - manages states within React. State changes cause rerender
+
+useRef - does not trigger a rerender when changing the .current property of a ref
+      - can be more efficient and straightforward when you don't needto track changes in real time*/
+function AddMovieFormUncontrolledComponents({ onAddMovie }) {
+
+  const titleRef = useRef(null);
+  const yearRef = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const title = titleRef.current.value;
+    const year = yearRef.current.value;
+    onAddMovie({ title, year });  //pass an object with named properties
+  }
+
+  return (
+    <div className="AddMovieForm componentBox">
+      <form onSubmit={handleSubmit}>
+        <label>Movie Title:
+          <input name="title" ref={titleRef} defaultValue="Default Title"/>
+        </label>
+        <label>Year Released:
+          <input name="year" type="number" ref={yearRef} defaultValue="1970"/>
         </label>
         <button>Add Movie</button>
       </form>
