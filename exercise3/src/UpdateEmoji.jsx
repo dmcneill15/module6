@@ -31,4 +31,4 @@ export function UpdateEmoji() {
     )
 }
 
-//note: in react, the style attribute needs to be an object: style={{fontSize: '30px'}} instead of style="font-size:30px;"
+//note: in react, the style attribute needs to be an object and is written slightly differently to vanilla css: style={{fontSize: '30px'}} instead of style="font-size:30px;"
