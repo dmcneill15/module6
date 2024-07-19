@@ -24,13 +24,13 @@ export function BigCats() {
     }
 
     function sortZtoA(){
-        let sortedCats = [...originalCats].sort((a,b)=>a.name.localeCompare(b.name));
+        let sortedCats = [...originalCats].sort((a,b)=>a.name.localeCompare(b.name)); //sort A toZ and then reverse the list
         sortedCats.reverse();
         setCats(sortedCats);
     }
 
     function filterOnP(){
-        let filteredCats = [...originalCats].filter((a)=>a.latinName.includes('Panthera'));
+        let filteredCats = [...originalCats].filter((a)=>a.latinName.includes('Panthera')); 
         setCats(filteredCats);
     }
 
