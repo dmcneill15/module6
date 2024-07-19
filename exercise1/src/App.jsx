@@ -7,10 +7,12 @@ import { Greeting } from './greeting'
 function App() {
   const [count, setCount] = useState(0)
 
+  //first greeting uses John andno childeren
+  //second greeting tests children and no name
   return (
     <>
-      <Greeting>Its a lovely day.</Greeting>
       <Greeting name="John"></Greeting>
+      <Greeting>Its a lovely day! ☀</Greeting>  
     </>
   )
 }
