@@ -23,10 +23,12 @@ export function UpdateEmoji() {
     return (
         <div className="emojiChanger">
             <div>
-            <span role="img" aria-label="happy">{emoji}</span>
+            <span role="img" aria-label="happy" style={{fontSize: '50px'}}>{emoji}</span>
             </div><br></br>
 
             <button onClick={changeMood}>Change Mood</button>
         </div>
     )
 }
+
+//note: in react, the style attribute needs to be an object: style={{fontSize: '30px'}} instead of style="font-size:30px;"
