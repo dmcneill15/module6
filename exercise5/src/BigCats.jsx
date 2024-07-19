@@ -98,6 +98,11 @@ function AddCat({onAddCat}){
         onAddCat(newCat);
     };
 
+    /*Form inputs are controlled. Need an onChange handler & a value 
+    - without the handler user won't be able to type in*/
+
+    /*Uncontrolled components use defaultVlaue & defaultChecked to specifiy a starting value  */
+
     return(
         <div className = "AddBigCatForm">
             <form onSubmit={handleSubmit}>
@@ -109,8 +114,10 @@ function AddCat({onAddCat}){
                     <input name='latinName' value={latinName}
                     onChange={(e)=> setLatinName(e.target.value)}/>
                 </label>
-                <button>Add Cat</button>
+                <button>Add Cat</button> 
             </form>
         </div>
     )
 }
+
+//Note:Button will always be submit unless changed type="button"
