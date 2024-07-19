@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ErrorBoundary FallbackComponent={ErrorMessage}>
-    <App /> {/* can wrap App or other high-level parent components */}
-  </ErrorBoundary>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 )
