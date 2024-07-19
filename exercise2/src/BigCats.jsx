@@ -9,8 +9,18 @@ export function BigCats() {
         { name: 'Tiger', latinName: 'Panthera tigris', id: 7 }
     ];
 
-    const BigCatList = cats.map(cat => (
-        <DisplayCat key={cat.id} name={cat.name} latinName={cat.latinName} />
+    //function to dynamically add the image property to an individual cat
+    function addImageProperty(cat){
+        const imageName = cat.name.toLowerCase().replace(' ', '_') + '.jpg';
+        cat = {...cat, image: imageName};
+        return cat;
+    };
+
+    const catsWithImages = cats.map(addImageProperty);
+
+    //need to have keys to keep track of individual items
+    const BigCatList = catsWithImages.map(cat => (
+        <DisplayCat key={cat.id} name={cat.name} latinName={cat.latinName} image={cat.image}/>
     ));
 
     return (
@@ -22,10 +32,12 @@ export function BigCats() {
     );
 }
 
-function DisplayCat({ name, latinName }) {
+function DisplayCat({ name, latinName, image }) {
     return (
         <li>
-            <p><strong>{name}:</strong> {latinName}</p>
+            <p><strong>{name}:</strong> {latinName}:
+            <img src={image} alt={name+` image`}></img><br></br>
+            </p>
         </li>
     )
 }
