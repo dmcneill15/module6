@@ -1,5 +1,9 @@
+//example for error handling with Error Boundary
+//Two ways to incorporate Error Boundary outside of event handler
+
 //https://kentcdodds.com/blog/use-react-error-boundary-to-handle-errors-in-react
 
+///------------------------------EXAMPLE ONE--------------------------------------
 function ErrorFallback({ error, resetErrorBoundary }) {
     return (
         <div role="alert">
@@ -49,7 +53,7 @@ function App() {
 }
 
 
-///--------------------------------------------------------------------
+///------------------------------EXAMPLE TWO--------------------------------------
 function Greeting() {
 	const [{ status, greeting, error }, setState] = React.useState({
 		status: 'idle',
