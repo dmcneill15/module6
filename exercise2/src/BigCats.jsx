@@ -1,3 +1,5 @@
+import {DisplayCat} from './components/DisplayCat'
+
 export function BigCats() {
     const cats = [
         { name: 'Cheetah', latinName: 'Acinonyx jubatus', id: 1 },
@@ -32,6 +34,8 @@ export function BigCats() {
     );
 }
 
+//RATHER MOVE COMPONENTS INTO THEIR OWN FOLDERS INSTEAD OF CREATING A COMPONENT WITHIN A COMPONENT
+/*
 function DisplayCat({ name, latinName, image }) {
     return (
         <li>
@@ -40,4 +44,4 @@ function DisplayCat({ name, latinName, image }) {
             </p>
         </li>
     )
-}
+}*/
